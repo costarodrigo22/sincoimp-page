@@ -1,10 +1,11 @@
-import CarouselSession from './components/CarouselSession';
+import BenefitsSession from '@/components/BenefitsSession';
+import CarouselSession from '../components/CarouselSession';
 
 export default function Home() {
 	return (
-		<div className='w-full bg-slate-500 h-screen'>
+		<div className='w-full h-screen'>
 			<CarouselSession />
-			<CarouselSession />
+			<BenefitsSession />
 		</div>
 	);
 }
