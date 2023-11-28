@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function ActionsSession() {
 	return (
-		<div className='flex flex-col items-center w-full pt-8 pb-8 bg-white h-full lg:px-3 md:h-4/5 sm:h-screen'>
+		<div className='flex flex-col items-center w-full pt-8 pb-8 bg-white lg:px-3'>
 			<div className='flex flex-col w-full lg:w-4/5'>
 				<span className='px-8 py-4 text-3xl font-medium lg:px-0'>
 					Por que me sindicalizar?
