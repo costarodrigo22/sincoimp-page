@@ -1,9 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import ButtonNavigation from '../ButtonNavigation';
 
 export default function BenefitsSession() {
 	return (
-		<div className='w-full h-2/3 flex justify-center lg:px-3'>
+		<div className='w-full h-4/5 flex justify-center lg:px-3 lg:h-2/3 md:h-1/2 sm:h-2/3'>
 			<div className='w-full h-full flex lg:w-4/5'>
 				<div className='hidden lg:w-1/2 lg:flex'>
 					<Image
@@ -94,27 +95,8 @@ export default function BenefitsSession() {
 						</div>
 					</div>
 
-					<div className='w-full'>
-						<Link
-							href='/'
-							className='flex items-center w-[150px] py-2 px-4 justify-center border-2 bg-red-700 rounded-3xl cursor-pointer hover:shadow-lg transition duration-300 ease-in-out text-[12px] text-white'
-						>
-							Filiar-me
-							<svg
-								xmlns='http://www.w3.org/2000/svg'
-								fill='none'
-								viewBox='0 0 24 24'
-								stroke-width='1.5'
-								stroke='currentColor'
-								className='w-6 h-6 ml-2'
-							>
-								<path
-									stroke-linecap='round'
-									stroke-linejoin='round'
-									d='M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3'
-								/>
-							</svg>
-						</Link>
+					<div className='pl-8 w-full lg:pl-0'>
+						<ButtonNavigation label='Filiar-me' navigateTo='/' />
 					</div>
 				</div>
 			</div>
