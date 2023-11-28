@@ -27,7 +27,7 @@ export default function NavBar() {
 				</div>
 			</nav>
 
-			<nav className='flex flex-col w-full fixed md:hidden'>
+			<nav className='flex flex-col w-full fixed md:hidden z-10'>
 				<button
 					data-collapse-toggle='navbar-default'
 					type='button'
