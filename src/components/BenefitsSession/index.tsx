@@ -4,7 +4,7 @@ import ButtonNavigation from '../ButtonNavigation';
 
 export default function BenefitsSession() {
 	return (
-		<div className='w-full h-4/5 flex justify-center lg:px-3 lg:h-2/3 md:h-1/2 sm:h-2/3'>
+		<div className='w-full h-4/5 flex justify-center lg:px-3 lg:h-2/3 md:h-4/5 sm:h-2/3'>
 			<div className='w-full h-full flex lg:w-4/5'>
 				<div className='hidden lg:w-1/2 lg:flex'>
 					<Image
