@@ -26,19 +26,17 @@ export default function Carousel({ imageDetails }: CarouselProps) {
 				className='absolute top-1/2 left-6 w-16 h-16 z-30 flex items-center justify-center rounded-full transition-colors hover:bg-black/10 cursor-pointer'
 			/>
 			{imageDetails.map((item) => (
-				<>
-					<SwiperSlide key={item.id}>
-						<div
-							style={{
-								width: '100%',
-								height: '100%',
-								backgroundImage: `url(data:image/png;base64,${item.base64})`,
-								backgroundSize: 'cover',
-								backgroundPosition: 'center',
-							}}
-						/>
-					</SwiperSlide>
-				</>
+				<SwiperSlide key={item.id}>
+					<div
+						style={{
+							width: '100%',
+							height: '100%',
+							backgroundImage: `url(data:image/png;base64,${item.base64})`,
+							backgroundSize: 'cover',
+							backgroundPosition: 'center',
+						}}
+					/>
+				</SwiperSlide>
 			))}
 			<ButtonCarousel
 				direction='next'
