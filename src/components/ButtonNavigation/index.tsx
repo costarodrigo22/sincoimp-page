@@ -10,7 +10,7 @@ export default function ButtonNavigation({ label, navigateTo }: ButtonProps) {
 	return (
 		<Link
 			href={navigateTo}
-			className='flex items-center w-[150px] py-2 px-4 justify-center border-2 bg-red-700 rounded-3xl cursor-pointer hover:shadow-lg transition duration-300 ease-in-out text-[12px] text-white'
+			className='flex items-center w-[200px] py-2 px-4 justify-center border-2 bg-red-700 rounded-3xl cursor-pointer hover:shadow-lg transition duration-300 ease-in-out text-[12px] text-white'
 		>
 			{label}
 			<svg
