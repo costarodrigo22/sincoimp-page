@@ -16,34 +16,43 @@ export default function BenefitsSession() {
 					/>
 				</div>
 
-				<div className='w-full flex flex-col items-center pt-8 lg:w-1/2'>
+				<div className='relative w-full flex flex-col items-center pt-8 lg:w-1/2'>
+					<Image
+						src='backdrop-image.svg'
+						width={77}
+						height={180}
+						alt='Icon fake'
+						className='absolute right-0 -top-0.5'
+					/>
 					<span className='font-medium text-3xl px-8 sm:px-0'>
 						Por que fialiar -se ao <strong>sincoimp?</strong>
 					</span>
-
 					<span className='px-8 sm:px-0'>
 						Tenha seus direitos garantidos além de diversos beneficios.
 					</span>
-
 					<div className='px-8 w-full grid grid-cols-2 gap-2 mt-10 lg:px-0'>
 						<div className='flex items-center mb-10'>
-							<Image
-								src='icon-fake.svg'
-								width={30}
-								height={30}
-								alt='Icon fake'
-							/>
+							<div className='bg-[#B500001A] w-14 h-14 rounded-full flex items-center justify-center'>
+								<Image
+									src='icon-fake.svg'
+									width={30}
+									height={30}
+									alt='Icon fake'
+								/>
+							</div>
 
 							<p className='ml-4 text-sm'>Consultas juridícas</p>
 						</div>
 
 						<div className='flex items-center mb-10'>
-							<Image
-								src='icon-fake.svg'
-								width={30}
-								height={30}
-								alt='Icon fake'
-							/>
+							<div className='bg-[#B500001A] w-14 h-14 rounded-full flex items-center justify-center'>
+								<Image
+									src='icon-fake.svg'
+									width={30}
+									height={30}
+									alt='Icon fake'
+								/>
+							</div>
 
 							<p className='ml-4 text-sm'>
 								Descontos em estabelecimentos de ensino
@@ -51,52 +60,59 @@ export default function BenefitsSession() {
 						</div>
 
 						<div className='flex items-center mb-10'>
-							<Image
-								src='icon-fake.svg'
-								width={30}
-								height={30}
-								alt='Icon fake'
-							/>
+							<div className='bg-[#B500001A] w-14 h-14 rounded-full flex items-center justify-center'>
+								<Image
+									src='icon-fake.svg'
+									width={30}
+									height={30}
+									alt='Icon fake'
+								/>
+							</div>
 
 							<p className='ml-4 text-sm'>Descontos em laboratórios</p>
 						</div>
 
 						<div className='flex items-center mb-10'>
-							<Image
-								src='icon-fake.svg'
-								width={30}
-								height={30}
-								alt='Icon fake'
-							/>
+							<div className='bg-[#B500001A] w-14 h-14 rounded-full flex items-center justify-center'>
+								<Image
+									src='icon-fake.svg'
+									width={30}
+									height={30}
+									alt='Icon fake'
+								/>
+							</div>
 
 							<p className='ml-4 text-sm'>Consultas juridícas</p>
 						</div>
 
 						<div className='flex items-center mb-10'>
-							<Image
-								src='icon-fake.svg'
-								width={30}
-								height={30}
-								alt='Icon fake'
-							/>
+							<div className='bg-[#B500001A] w-14 h-14 rounded-full flex items-center justify-center'>
+								<Image
+									src='icon-fake.svg'
+									width={30}
+									height={30}
+									alt='Icon fake'
+								/>
+							</div>
 
 							<p className='ml-4 text-sm'>Atendimento odontológico</p>
 						</div>
 
 						<div className='flex items-center mb-10'>
-							<Image
-								src='icon-fake.svg'
-								width={30}
-								height={30}
-								alt='Icon fake'
-							/>
+							<div className='bg-[#B500001A] w-14 h-14 rounded-full flex items-center justify-center'>
+								<Image
+									src='icon-fake.svg'
+									width={30}
+									height={30}
+									alt='Icon fake'
+								/>
+							</div>
 
 							<p className='ml-4 text-sm'>Descontos em farmâcias</p>
 						</div>
 					</div>
-
-					<div className='pl-8 w-full lg:pl-0'>
-						<ButtonNavigation label='Filiar-me' navigateTo='/' />
+					<div className='flex pl-8 w-full lg:pl-0 items-center justify-center'>
+						<ButtonNavigation label='Quero me Filiar' navigateTo='/' />
 					</div>
 				</div>
 			</div>
