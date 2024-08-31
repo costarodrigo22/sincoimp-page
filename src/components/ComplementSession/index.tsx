@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function ComplementSession() {
 	return (
-		<div className='relative flex w-full'>
+		<div className='relative flex w-full pt-24'>
 			<div className='w-3/4 pl-24'>
 				<div className='flex gap-24'>
 					<div className='flex flex-col items-center justify-center bg-[#F1F1F1] w-[350px] h-[330px] rounded-3xl relative px-2'>
@@ -64,10 +64,111 @@ export default function ComplementSession() {
 					</div>
 				</div>
 
-				<div>topics</div>
+				<div className='w-full mt-16'>
+					<div className='flex'>
+						<Image
+							src='speaker.svg'
+							width={30}
+							height={30}
+							alt='Question icon'
+						/>
+						<strong>Você sabia?</strong>
+					</div>
+
+					<div className='flex gap-1 mt-4'>
+						<span>A</span>
+						<strong>CCT</strong>
+						<span>do</span>
+						<strong>SINCOIMP</strong>
+						<span>garante a ausência do trabalhador em casos como:</span>
+					</div>
+
+					<div className='flex gap-24 mt-4 mb-4'>
+						<div className='flex flex-col gap-6'>
+							<div className='flex gap-1 items-center'>
+								<Image
+									src='arrow-icon.svg'
+									width={20}
+									height={20}
+									alt='Question icon'
+								/>
+
+								<span>Dois dias por falecimento de cônjuge;</span>
+							</div>
+
+							<div className='flex gap-1 items-center'>
+								<Image
+									src='arrow-icon.svg'
+									width={20}
+									height={20}
+									alt='Question icon'
+								/>
+
+								<span>Dois dias por falecimento de cônjuge;</span>
+							</div>
+
+							<div className='flex gap-1 items-center'>
+								<Image
+									src='arrow-icon.svg'
+									width={20}
+									height={20}
+									alt='Question icon'
+								/>
+
+								<span>Dois dias por falecimento de cônjuge;</span>
+							</div>
+
+							<div className='flex gap-1 items-center'>
+								<Image
+									src='arrow-icon.svg'
+									width={20}
+									height={20}
+									alt='Question icon'
+								/>
+
+								<span>Dois dias por falecimento de cônjuge;</span>
+							</div>
+						</div>
+
+						<div className='flex flex-col gap-6'>
+							<div className='flex gap-1 items-center'>
+								<Image
+									src='arrow-icon.svg'
+									width={20}
+									height={20}
+									alt='Question icon'
+								/>
+
+								<span>Dois dias por falecimento de cônjuge;</span>
+							</div>
+							<div className='flex gap-1 items-center'>
+								<Image
+									src='arrow-icon.svg'
+									width={20}
+									height={20}
+									alt='Question icon'
+								/>
+
+								<span>Dois dias por falecimento de cônjuge;</span>
+							</div>
+							<div className='flex gap-1 items-center'>
+								<Image
+									src='arrow-icon.svg'
+									width={20}
+									height={20}
+									alt='Question icon'
+								/>
+
+								<span>Dois dias por falecimento de cônjuge;</span>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 
-			<div>image</div>
+			<div className='w-1/4 flex items-end -mb-24 -z-40'>
+				<Image src='/human.png' width={350} height={350} alt='Question icon' />
+			</div>
 		</div>
 	);
 }
