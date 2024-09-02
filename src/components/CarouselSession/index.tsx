@@ -7,10 +7,12 @@ export default async function CarouselSession() {
     'https://comerciariosdeimperatriz.com.br/api/without/carrossel/index',
     {
       cache: 'no-store',
+      headers: {
+        Accept: 'application/json',
+      },
     }
   );
   const images = await response.json();
-  console.log(images);
   return (
     <section className="relative w-full h-3/4 flex flex-col items-center">
       <NavBar />

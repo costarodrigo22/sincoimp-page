@@ -1,13 +1,27 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Dialog } from '@headlessui/react';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 import { BeatLoader } from 'react-spinners';
 
+interface FooterData {
+  id: string;
+  celular: string;
+  endereco: string;
+  email: string;
+  instagram: string;
+  facebook: string;
+  logo: string;
+  associado_id: string;
+  descricao: string | null;
+  base64: string;
+}
+
 export default function FooterSession() {
+  const [footerData, setFooterData] = useState<FooterData | null>();
   const [openModal, setOpenModal] = useState(false);
   const [enterprise, setEnterprise] = useState('');
   const [description, setDescription] = useState('');
@@ -19,6 +33,32 @@ export default function FooterSession() {
       setFile(event.target.files[0]);
     }
   }
+  async function handleFooterData() {
+    try {
+      const response = await fetch(
+        'https://comerciariosdeimperatriz.com.br/api/without/rodape/index',
+        {
+          cache: 'no-store',
+          headers: {
+            Accept: 'application/json',
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch footer data');
+      }
+
+      const footerResponse = await response.json();
+      setFooterData(footerResponse.data[0]);
+    } catch (error) {
+      console.error('Error fetching footer data:', error);
+    }
+  }
+
+  useEffect(() => {
+    handleFooterData();
+  }, []);
 
   async function handleSendReport() {
     setLoading(true);
@@ -182,14 +222,14 @@ export default function FooterSession() {
         <div className="w-full px-8 flex flex-col justify-between py-3 z-50">
           <div>
             <Image
-              src="logo-white.svg"
+              src={footerData ? footerData.base64 : ''}
               alt="Logo do sindicato"
               width={90}
               height={90}
             />
 
             <span className="text-[#B7B7B7] text-xs">
-              Sindicato dos comerciarios de Imperatriz
+              {footerData?.descricao}
             </span>
           </div>
 
@@ -197,19 +237,31 @@ export default function FooterSession() {
             <strong>Siga nossas redes sociais</strong>
 
             <div className="flex mt-4">
-              <Image
-                className="mr-4"
-                src="instagram.svg"
-                alt="Logo do sindicato"
-                width={30}
-                height={30}
-              />
-              <Image
-                src="facebook.svg"
-                alt="Logo do sindicato"
-                width={30}
-                height={30}
-              />
+              <a
+                href={footerData?.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  className="mr-4"
+                  src="instagram.svg"
+                  alt="Logo do instagram"
+                  width={30}
+                  height={30}
+                />
+              </a>
+              <a
+                href={footerData?.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  src="facebook.svg"
+                  alt="Logo do facebook"
+                  width={30}
+                  height={30}
+                />
+              </a>
             </div>
           </div>
         </div>
@@ -233,20 +285,20 @@ export default function FooterSession() {
             <Image
               className="mr-4"
               src="brasil.svg"
-              alt="Logo do sindicato"
+              alt="Bandeira do Brasil"
               width={30}
               height={30}
             />
             <Image
               className="mr-4"
               src="maranhao.svg"
-              alt="Logo do sindicato"
+              alt="Bandeira do Maranhão"
               width={30}
               height={30}
             />
             <Image
               src="imperatriz.svg"
-              alt="Logo do sindicato"
+              alt="Bandeira de Imperatriz"
               width={30}
               height={30}
             />
@@ -258,35 +310,31 @@ export default function FooterSession() {
           <div className="flex flex-row items-center mb-4 mt-4">
             <Image
               src="whatsApp.svg"
-              alt="Logo do sindicato"
+              alt="Logo do WhatsApp"
               width={30}
               height={30}
             />
 
-            <span className="text-sm ml-4">(99) 9 8277 - 0199</span>
+            <span className="text-sm ml-4">{footerData?.celular}</span>
           </div>
           <div className="flex flex-row items-center mb-4">
             <Image
               src="location.svg"
-              alt="Logo do sindicato"
+              alt="Alfinete de localização"
               width={30}
               height={30}
             />
 
-            <span className="text-sm ml-4">
-              Av Santa Teresa, N°85 - Centro, Imperatriz, Maranhão
-            </span>
+            <span className="text-sm ml-4">{footerData?.endereco}</span>
           </div>
           <div className="flex flex-row items-center">
             <Image
               src="mesage.svg"
-              alt="Logo do sindicato"
+              alt="Imagem de uma carta, para simbolizar o e-mail"
               width={30}
               height={30}
             />
-            <span className="text-sm ml-4">
-              comerciariosdeimperatriz@gmail.com
-            </span>
+            <span className="text-sm ml-4">{footerData?.email}</span>
           </div>
 
           <div className="mt-4">
