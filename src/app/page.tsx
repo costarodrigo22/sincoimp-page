@@ -8,7 +8,7 @@ import { Toaster } from 'react-hot-toast';
 
 export default function Home() {
   return (
-    <div className="w-screen h-screen">
+    <div className="w-full h-screen">
       <Toaster position="top-right" reverseOrder={false} />
       <CarouselSession />
       <BenefitsSession />
