@@ -12,7 +12,7 @@ export default function Home() {
       <Toaster position="top-right" reverseOrder={false} />
       <CarouselSession />
       <BenefitsSession />
-      <NoticeSession />
+      {/* <NoticeSession /> */}
       <ActionsSession />
       <ComplementSession />
       <FooterSession />
