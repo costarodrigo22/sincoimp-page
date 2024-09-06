@@ -1,25 +1,35 @@
 import Image from 'next/image';
 import ActionCard from './ActionCard';
+import axios from 'axios';
 import * as RadixIcons from '@radix-ui/react-icons';
 
 type RadixIconNames = keyof typeof RadixIcons;
 
 export default async function ActionsSession() {
-  const response = await fetch(
-    'https://comerciariosdeimperatriz.com.br/api/without/segundo_informativo/index',
-    {
-      cache: 'no-store',
-      headers: {
-        Accept: 'application/json',
-      },
-    }
-  );
-  const responsejsoned = await response.json();
-  const titleNdescription = responsejsoned.data;
-  const benefits = responsejsoned.data[0]?.categoria_segundo_informativo;
+  // Buscar dados com axios
+  let titleNdescription;
+  let benefits;
+
+  try {
+    const response = await axios.get(
+      'http://192.168.0.191:7008/api/without/segundo_informativo/index',
+      {
+        headers: {
+          Accept: 'application/json',
+        },
+      }
+    );
+
+    titleNdescription = response.data.data;
+    benefits = response.data.data[0]?.categoria_segundo_informativo;
+  } catch (error) {
+    console.error('Erro ao buscar os dados:', error);
+    // Lidar com o erro de maneira apropriada
+  }
 
   return (
     <div
+      id="actionsSection"
       className="flex flex-col items-center w-full h-auto mb-8 lg:px-6 py-8"
       style={{
         backgroundImage: 'url("backdrop-image-whyjoin.svg")',

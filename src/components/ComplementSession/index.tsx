@@ -5,7 +5,7 @@ import CCTText from './CCTText';
 export default function ComplementSession() {
   return (
     <div className="flex w-full h-auto">
-      <div className="md:w-3/4 md:pl-24 sm:pl-12">
+      <div className="md:w-3/4 md:pl-24 sm:pl-12" id="doubtsSection">
         <div className="flex flex-col md:flex-row gap-24 mt-5 m-auto pl-3">
           <ComplementCard />
 
@@ -43,7 +43,7 @@ export default function ComplementSession() {
           </div>
         </div>
 
-        <div className="w-full mt-16 text-lg mb-10 pl-3">
+        <div className="w-full mt-16 text-lg mb-10 pl-3" id="uKnowSection">
           <div className="flex items-end gap-3 ">
             <Image
               src="speaker.svg"
