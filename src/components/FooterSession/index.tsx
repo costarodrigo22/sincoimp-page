@@ -1,4 +1,4 @@
-'use client';
+'use client'; // Declara que o componente deve ser renderizado no cliente
 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
@@ -6,6 +6,7 @@ import { Dialog } from '@headlessui/react';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 import { BeatLoader } from 'react-spinners';
+import { useReportModal } from '@/app/contexts/ReportModal';
 
 interface FooterData {
   id: string;
@@ -21,8 +22,8 @@ interface FooterData {
 }
 
 export default function FooterSession() {
-  const [footerData, setFooterData] = useState<FooterData | null>();
-  const [openModal, setOpenModal] = useState(false);
+  const [footerData, setFooterData] = useState<FooterData | null>(null);
+  const { openReportModal, setOpenReportModal } = useReportModal();
   const [enterprise, setEnterprise] = useState('');
   const [description, setDescription] = useState('');
   const [file, setFile] = useState<File | null>(null);
@@ -33,29 +34,22 @@ export default function FooterSession() {
       setFile(event.target.files[0]);
     }
   }
+
   async function handleFooterData() {
     try {
-      const response = await fetch(
-        'https://comerciariosdeimperatriz.com.br/api/without/rodape/index',
+      const response = await axios.get(
+        'http://192.168.0.191:7008/api/without/rodape/index',
         {
-          cache: 'no-store',
           headers: {
             Accept: 'application/json',
           },
         }
       );
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch footer data');
-      }
-
-      const footerResponse = await response.json();
-      setFooterData(footerResponse.data[0]);
+      setFooterData(response.data.data[0]);
     } catch (error) {
       console.error('Error fetching footer data:', error);
     }
   }
-
   useEffect(() => {
     handleFooterData();
   }, []);
@@ -74,7 +68,7 @@ export default function FooterSession() {
       formData.append('descricao', description);
 
       await axios.post(
-        'http://192.168.0.191:7008/api/without/denuncia/full_store',
+        'http://192.168.0.191:7008//api/without/denuncia/full_store',
         formData
       );
 
@@ -82,7 +76,7 @@ export default function FooterSession() {
     } catch (error) {
       toast.error('Algo deu errado ao enviar sua denúncia!');
     } finally {
-      setOpenModal(false);
+      setOpenReportModal(false);
       setLoading(false);
       setDescription('');
       setEnterprise('');
@@ -93,8 +87,8 @@ export default function FooterSession() {
   return (
     <>
       <Dialog
-        open={openModal}
-        onClose={() => setOpenModal(false)}
+        open={openReportModal}
+        onClose={() => setOpenReportModal(false)}
         className="fixed inset-0 flex items-center justify-center z-50"
         style={{ backgroundColor: 'rgba(0, 0, 0, 0.8)' }}
       >
@@ -102,11 +96,11 @@ export default function FooterSession() {
           <div className="w-full flex items-end justify-end">
             <Image
               src="close-icon.svg"
-              alt="Logo do sindicato"
+              alt="Fechar modal"
               width={15}
               height={15}
               className="cursor-pointer"
-              onClick={() => setOpenModal(false)}
+              onClick={() => setOpenReportModal(false)}
             />
           </div>
 
@@ -222,7 +216,7 @@ export default function FooterSession() {
         <div className="w-full px-8 flex flex-col justify-between py-3 z-50">
           <div>
             <Image
-              src={footerData ? footerData.base64 : ''}
+              src={footerData?.base64 ? footerData?.base64 : ''}
               alt="Logo do sindicato"
               width={90}
               height={90}
@@ -339,7 +333,7 @@ export default function FooterSession() {
 
           <div className="mt-4">
             <button
-              onClick={() => setOpenModal(true)}
+              onClick={() => setOpenReportModal(true)}
               className="
 							flex items-center w-[200px] py-2 px-4 justify-center border-2 bg-white rounded-3xl cursor-pointer hover:shadow-lg transition duration-300 ease-in-out text-[12px] text-black font-bold
 						"
