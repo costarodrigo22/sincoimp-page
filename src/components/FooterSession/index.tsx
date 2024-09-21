@@ -89,125 +89,127 @@ export default function FooterSession() {
       <Dialog
         open={openReportModal}
         onClose={() => setOpenReportModal(false)}
-        className="fixed inset-0 flex items-center justify-center z-50"
+        className="fixed inset-0 flex h-md:h-screen h-md:overflow-y-auto items-center justify-center z-50"
         style={{ backgroundColor: 'rgba(0, 0, 0, 0.8)' }}
       >
-        <Dialog.Panel className="bg-white p-6 rounded-lg shadow-lg z-50 flex flex-col w-[570px]">
-          <div className="w-full flex items-end justify-end">
-            <Image
-              src="close-icon.svg"
-              alt="Fechar modal"
-              width={15}
-              height={15}
-              className="cursor-pointer"
-              onClick={() => setOpenReportModal(false)}
-            />
-          </div>
-
-          <strong className="text-[16px]">
-            Bem-vindo(a) ao nosso canal de denúncia
-          </strong>
-
-          <span className="text-[14px]">
-            Aqui você pode registrar denúncias contra empresas filiadas ao
-            sindicato. Mas não se preocupe,
-            <strong className="text-[14px] ml-1">
-              sua identidade será preservada.
-            </strong>
-          </span>
-
-          <div className="">
-            <Image
-              src="image-modal-report.svg"
-              alt="image report icon"
-              width={550}
-              height={60}
-            />
-          </div>
-
-          <div className="flex items-center">
-            <Image
-              src="warning-icon.svg"
-              alt="warning report icon"
-              width={20}
-              height={20}
-            />
-
-            <strong className="ml-2">Importante!</strong>
-          </div>
-
-          <span className="text-[14px] mt-4">
-            Somente o sindicato terá acesso a sua denuncia!
-          </span>
-
-          <Image
-            className="w-full -mt-4"
-            src="line-modal-icon.svg"
-            alt="warning report icon"
-            width={0}
-            height={0}
-          />
-
-          <input
-            value={enterprise}
-            onChange={(event) => setEnterprise(event.target.value)}
-            className="w-full p-2 border-[1px] border-opacity-20 border-[#000] mt-4 rounded-md text-[#909090] outline-none text-[14px]"
-            placeholder="Nome da empresa"
-          />
-
-          <textarea
-            value={description}
-            onChange={(event) => setDescription(event.target.value)}
-            className="w-full p-2 border-[1px] border-opacity-20 border-[#000] mt-4 rounded-md text-[#909090] outline-none text-[14px]"
-            placeholder="Descrição da denúncia"
-          />
-
-          <div className="flex w-full mt-4">
-            <label className="flex flex-col items-center justify-center w-full h-20 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
-              <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                <Image
-                  src="attach-icon.svg"
-                  alt="anexar arquivo"
-                  width={10}
-                  height={10}
-                />
-                <p className="mb-2 text-xs text-gray-500">
-                  <span className="font-semibold">Clique para carregar</span> ou
-                  arraste e solte
-                </p>
-                <p className="text-xs text-gray-500">
-                  SVG, PNG, JPG or GIF (MAX. 800x400px)
-                </p>
-              </div>
-              <input
-                type="file"
-                className="hidden"
-                onChange={handleFileChange}
+        <Dialog.Panel className="bg-white p-6 h-md:h-screen h-md:overflow-y-auto rounded-lg shadow-lg z-50 flex flex-col w-[570px]">
+          <div>
+            <div className="w-full flex items-end justify-end">
+              <Image
+                src="close-icon.svg"
+                alt="Fechar modal"
+                width={15}
+                height={15}
+                className="cursor-pointer"
+                onClick={() => setOpenReportModal(false)}
               />
-            </label>
-          </div>
+            </div>
 
-          <div className="w-full flex items-end justify-end mt-4">
-            <button
-              disabled={loading}
-              className="flex bg-[#0066FF] items-center justify-center px-6 py-3 rounded-md min-w-[100px] min-h-[30px]"
-              onClick={handleSendReport}
-            >
-              {loading && <BeatLoader color="#fff" size={6} />}
+            <strong className="text-[16px]">
+              Bem-vindo(a) ao nosso canal de denúncia
+            </strong>
 
-              {!loading && (
-                <>
+            <span className="text-[14px]">
+              Aqui você pode registrar denúncias contra empresas filiadas ao
+              sindicato. Mas não se preocupe,
+              <strong className="text-[14px] ml-1">
+                sua identidade será preservada.
+              </strong>
+            </span>
+
+            <div className="">
+              <Image
+                src="image-modal-report.svg"
+                alt="image report icon"
+                width={550}
+                height={60}
+              />
+            </div>
+
+            <div className="flex items-center">
+              <Image
+                src="warning-icon.svg"
+                alt="warning report icon"
+                width={20}
+                height={20}
+              />
+
+              <strong className="ml-2">Importante!</strong>
+            </div>
+
+            <span className="text-[14px] mt-4">
+              Somente o sindicato terá acesso a sua denuncia!
+            </span>
+
+            <Image
+              className="w-full -mt-4"
+              src="line-modal-icon.svg"
+              alt="warning report icon"
+              width={0}
+              height={0}
+            />
+
+            <input
+              value={enterprise}
+              onChange={(event) => setEnterprise(event.target.value)}
+              className="w-full p-2 border-[1px] border-opacity-20 border-[#000] mt-4 rounded-md text-[#909090] outline-none text-[14px]"
+              placeholder="Nome da empresa"
+            />
+
+            <textarea
+              value={description}
+              onChange={(event) => setDescription(event.target.value)}
+              className="w-full p-2 border-[1px] border-opacity-20 border-[#000] mt-4 rounded-md text-[#909090] outline-none text-[14px]"
+              placeholder="Descrição da denúncia"
+            />
+
+            <div className="flex w-full mt-4">
+              <label className="flex flex-col items-center justify-center w-full h-20 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+                <div className="flex flex-col items-center justify-center pt-5 pb-6">
                   <Image
-                    src="save-icon.svg"
+                    src="attach-icon.svg"
                     alt="anexar arquivo"
-                    width={15}
-                    height={15}
+                    width={10}
+                    height={10}
                   />
+                  <p className="mb-2 text-xs text-gray-500">
+                    <span className="font-semibold">Clique para carregar</span>{' '}
+                    ou arraste e solte
+                  </p>
+                  <p className="text-xs text-gray-500">
+                    SVG, PNG, JPG or GIF (MAX. 800x400px)
+                  </p>
+                </div>
+                <input
+                  type="file"
+                  className="hidden"
+                  onChange={handleFileChange}
+                />
+              </label>
+            </div>
 
-                  <span className="text-[#fff] ml-2 text-sm">Enviar</span>
-                </>
-              )}
-            </button>
+            <div className="w-full flex items-end justify-end mt-4">
+              <button
+                disabled={loading}
+                className="flex bg-[#0066FF] items-center justify-center px-6 py-3 rounded-md min-w-[100px] min-h-[30px]"
+                onClick={handleSendReport}
+              >
+                {loading && <BeatLoader color="#fff" size={6} />}
+
+                {!loading && (
+                  <>
+                    <Image
+                      src="save-icon.svg"
+                      alt="anexar arquivo"
+                      width={15}
+                      height={15}
+                    />
+
+                    <span className="text-[#fff] ml-2 text-sm">Enviar</span>
+                  </>
+                )}
+              </button>
+            </div>
           </div>
         </Dialog.Panel>
       </Dialog>
