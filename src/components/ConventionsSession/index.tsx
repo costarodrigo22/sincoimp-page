@@ -1,10 +1,8 @@
 'use client';
 import Image from 'next/image';
 import axios from 'axios';
-import ConventionModal from './components/ConventionModal';
 import { useEffect, useState } from 'react';
-import { Convencao, Data } from './conventionTypes';
-import ConventionItem from './components/ConventionItem';
+import { Data } from './conventionTypes';
 import { ClipLoader } from 'react-spinners';
 import ConventionCarousel from './components/ConventionsCarousel';
 

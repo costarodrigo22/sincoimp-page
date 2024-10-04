@@ -63,7 +63,7 @@ export default function ConventionModal({
           />
           <span className="text-[#343434]">Arquivos</span>
         </div>
-        {item.anexo_convencao.length > 0 ? (
+        {item?.anexo_convencao?.length > 0 ? (
           item.anexo_convencao.map((anexo) => (
             <div
               key={anexo.id}

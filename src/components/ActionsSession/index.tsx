@@ -12,7 +12,7 @@ export default async function ActionsSession() {
 
   try {
     const response = await axios.get(
-      'http://192.168.0.191:7008/api/without/segundo_informativo/index',
+      'https://comerciariosdeimperatriz.com.br/api/without/segundo_informativo/index',
       {
         headers: {
           Accept: 'application/json',
