@@ -39,7 +39,9 @@ export default function NavBar() {
   return (
     <>
       <nav className="z-30 absolute hidden flex-row justify-between bg-white w-full rounded-b-3xl shadow-md px-8 py-6 md:flex lg:w-3/4">
-        <img src={base64} alt="Logo do sindicato" width={90} height={90} />
+        {base64 && (
+          <img src={base64} alt="Logo do sindicato" width={90} height={90} />
+        )}
 
         <div className="w-2/4 flex justify-between items-center text-sm font-medium">
           <div
