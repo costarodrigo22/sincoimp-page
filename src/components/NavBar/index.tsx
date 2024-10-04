@@ -39,6 +39,12 @@ export default function NavBar() {
           </div>
           <div
             className=" p-2 rounded-[10px] hover:bg-slate-200 transition-colors cursor-pointer"
+            onClick={() => handleScroll('conventionsSection')}
+          >
+            <a className="cursor-pointer font-medium">Convenções</a>
+          </div>
+          <div
+            className=" p-2 rounded-[10px] hover:bg-slate-200 transition-colors cursor-pointer"
             onClick={() => handleScroll('doubtsSection')}
           >
             <a className="cursor-pointer font-medium">Dúvidas</a>
@@ -147,6 +153,12 @@ export default function NavBar() {
             </a>
             <a
               className="cursor-pointer font-medium"
+              onClick={() => handleScroll('conventionsSection')}
+            >
+              Convenções
+            </a>
+            <a
+              className="cursor-pointer font-medium"
               onClick={() => handleScroll('uKnowSection')}
             >
               Você sabia?
@@ -154,7 +166,7 @@ export default function NavBar() {
           </div>
         )}
       </nav>
-      <div className=" fixed bottom-5 right-5">
+      <div className=" fixed bottom-5 z-40 right-5">
         <div
           className=" bg-[#007bff] rounded-full p-3 cursor-pointer text-lg shadow-md shadow-[rgba(0, 0, 0, 0.1)]"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}

@@ -6,6 +6,7 @@ import Image from 'next/image';
 import ButtonNavigation from '../ButtonNavigation';
 import BenefitItem from './BenefitItem';
 import * as RadixIcons from '@radix-ui/react-icons';
+import { ClipLoader } from 'react-spinners';
 
 type RadixIconNames = keyof typeof RadixIcons;
 
@@ -19,7 +20,7 @@ const BenefitsSession = () => {
     const fetchBenefits = async () => {
       try {
         const response = await axios.get(
-          'http://192.168.0.191:7008/api/without/primeiro_informativo/index',
+          'https://comerciariosdeimperatriz.com.br/api/without/primeiro_informativo/index',
           {
             headers: {
               Accept: 'application/json',
@@ -40,7 +41,12 @@ const BenefitsSession = () => {
     fetchBenefits();
   }, []);
 
-  if (loading) return <p>Carregando...</p>;
+  if (loading)
+    return (
+      <div className="flex justify-center items-center mt-40">
+        <ClipLoader loading={loading} color="#B50000" size={30} />
+      </div>
+    );
   if (error) return <p>{error}</p>;
 
   return (

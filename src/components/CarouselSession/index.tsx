@@ -5,6 +5,7 @@ import axios from 'axios';
 import Carousel from '../Carousel';
 import NavBar from '../NavBar';
 import 'swiper/css';
+import { ClipLoader } from 'react-spinners';
 
 const CarouselSession = () => {
   const [images, setImages] = useState<any>(null);
@@ -13,9 +14,10 @@ const CarouselSession = () => {
 
   useEffect(() => {
     const fetchImages = async () => {
+      setLoading(true);
       try {
         const response = await axios.get(
-          'http://192.168.0.191:7008/api/without/carrossel/index',
+          'https://comerciariosdeimperatriz.com.br/api/without/carrossel/index',
           {
             headers: {
               Accept: 'application/json',
@@ -37,7 +39,11 @@ const CarouselSession = () => {
   return (
     <section className="relative w-full h-[230px] xl:h-[90%] lg:h-[600px] md:h-[450px] sm:h-[400px] flex flex-col items-center">
       <NavBar />
-      {loading && <p>Carregando...</p>}
+      {loading && (
+        <div className="flex justify-center items-center absolute top-72">
+          <ClipLoader loading={loading} color="#B50000" size={30} />
+        </div>
+      )}
       {error && <p>{error}</p>}
       {images && images.data ? (
         <Carousel imageDetails={images.data} />
