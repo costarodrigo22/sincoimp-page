@@ -35,7 +35,6 @@ export default function ConventionModal({
           responseType: 'blob',
         }
       );
-      console.log(res);
       const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
       const pdfUrl = URL.createObjectURL(pdfBlob);
       window.open(pdfUrl, '_blank');

@@ -22,7 +22,6 @@ export default function ConventionsSession() {
             },
           }
         );
-        console.log('RESPOSTA AQUI', response.data);
         setData(response.data);
       } catch (error) {
         console.error('Erro ao buscar os dados:', error);

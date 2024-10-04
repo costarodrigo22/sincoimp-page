@@ -17,7 +17,6 @@ export default function ConventionCarousel({ data }: Data) {
   function handleOpenModal(item: Convencao) {
     setItem(item);
     setIsModalOpen(true);
-    console.log(item);
   }
 
   return (

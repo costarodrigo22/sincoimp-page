@@ -1,12 +1,29 @@
 'use client';
 
 import { useReportModal } from '@/app/contexts/ReportModal';
+import axios from 'axios';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function NavBar() {
   const [openMenuResponsive, setOpenMenuResponsive] = useState(false);
+  const [base64, setBase64] = useState<string>('');
   const { setOpenReportModal } = useReportModal();
+
+  async function handleGetData() {
+    try {
+      const res = await axios.get(
+        'https://comerciariosdeimperatriz.com.br/api/without/empresa/logo'
+      );
+      setBase64(res.data.data[0].base64);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    handleGetData();
+  }, []);
 
   function handleMenuResponsive() {
     setOpenMenuResponsive(!openMenuResponsive);
@@ -22,7 +39,7 @@ export default function NavBar() {
   return (
     <>
       <nav className="z-30 absolute hidden flex-row justify-between bg-white w-full rounded-b-3xl shadow-md px-8 py-6 md:flex lg:w-3/4">
-        <Image src="logo.svg" alt="Logo do sindicato" width={90} height={90} />
+        <img src={base64} alt="Logo do sindicato" width={90} height={90} />
 
         <div className="w-2/4 flex justify-between items-center text-sm font-medium">
           <div
