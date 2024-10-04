@@ -38,7 +38,7 @@ export default function FooterSession() {
   async function handleFooterData() {
     try {
       const response = await axios.get(
-        'http://192.168.0.191:7008/api/without/rodape/index',
+        'https://comerciariosdeimperatriz.com.br/api/without/rodape/index',
         {
           headers: {
             Accept: 'application/json',
@@ -68,7 +68,7 @@ export default function FooterSession() {
       formData.append('descricao', description);
 
       await axios.post(
-        'http://192.168.0.191:7008//api/without/denuncia/full_store',
+        'https://comerciariosdeimperatriz.com.br/api/without/denuncia/full_store',
         formData
       );
 
