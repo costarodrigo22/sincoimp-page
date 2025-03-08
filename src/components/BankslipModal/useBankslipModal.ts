@@ -51,9 +51,10 @@ export interface CompanyRes {
 }
 
 export default function useBankslipModal(setIsOpen: (isOpen: boolean) => void) {
-
-  const [loading, setLoading] = useState(false);
+    const [lastFetchedCnpj, setLastFetchedCnpj] = useState<string | null>(null);
+    const [loading, setLoading] = useState(false);
     const [companyNotFound, setCompanyNotFound] = useState(false);
+
     const {
       register,
       handleSubmit,
@@ -110,10 +111,14 @@ export default function useBankslipModal(setIsOpen: (isOpen: boolean) => void) {
       const formattedValue = formatCurrency(event.target.value);
       setValue('amount', formattedValue);
     }
+
     async function handleCnpjChange(event: React.ChangeEvent<HTMLInputElement>) {
       const formattedValue = formatCNPJ(event.target.value);
       setValue('cnpj', formattedValue);
-      if (formattedValue.length === 18) {
+
+      if (formattedValue.length === 18 && formattedValue !== lastFetchedCnpj) {
+        setLastFetchedCnpj(formattedValue);
+
         try {
           const { data } = await axios.post<CompanyRes>(
             'https://comerciariosdeimperatriz.com.br/api/without/empresa_conveniada/find_empresa',
@@ -134,7 +139,7 @@ export default function useBankslipModal(setIsOpen: (isOpen: boolean) => void) {
             });
             setCompanyNotFound(true);
           }
-          console.error('erro ao buscar empresa', error);
+          console.error('Erro ao buscar empresa', error);
         }
       }
     }
