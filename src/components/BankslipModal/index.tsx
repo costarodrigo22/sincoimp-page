@@ -92,6 +92,7 @@ export default function BankslipModal({
                   className="w-full p-2 border-[1px] border-opacity-20 border-[#000] mt-4 rounded-md text-[#090909] outline-none text-[14px]"
                   placeholder="Valor"
                   onChange={handleAmountChange}
+                  maxLength={18}
                   onKeyDown={(e) => {
                     if (e.key === 'Backspace' || e.key === 'Delete') {
                       e.preventDefault();
