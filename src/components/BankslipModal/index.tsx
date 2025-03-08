@@ -107,7 +107,7 @@ export default function BankslipModal({
       toast.success('Boleto gerado com sucesso');
       window.open(data.secure_url, '_blank');
     } catch (error) {
-      console.log('erro ao gerar boleto', error);
+      console.error('erro ao gerar boleto', error);
     }
   }
 
@@ -124,8 +124,6 @@ export default function BankslipModal({
           'https://comerciariosdeimperatriz.com.br/api/without/empresa_conveniada/find_empresa',
           { cnpj: unformatCNPJ(formattedValue) }
         );
-        console.log(data.data);
-
         setValue('companyName', data.data.nome_fantasia);
         setValue('email', data.data.email);
         setCompanyNotFound(false);
@@ -141,7 +139,7 @@ export default function BankslipModal({
           });
           setCompanyNotFound(true);
         }
-        console.log('erro ao buscar empresa', error);
+        console.error('erro ao buscar empresa', error);
       }
     }
   }
