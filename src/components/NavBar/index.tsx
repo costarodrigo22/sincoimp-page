@@ -4,10 +4,12 @@ import { useReportModal } from '@/app/contexts/ReportModal';
 import axios from 'axios';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import BankslipModal from '../BankslipModal';
 
 export default function NavBar() {
   const [openMenuResponsive, setOpenMenuResponsive] = useState(false);
   const [base64, setBase64] = useState<string>('');
+  const [openBankslipModal, setOpenBankslipModal] = useState(false);
   const { setOpenReportModal } = useReportModal();
 
   async function handleGetData() {
@@ -38,6 +40,10 @@ export default function NavBar() {
 
   return (
     <>
+      <BankslipModal
+        isOpen={openBankslipModal}
+        setIsOpen={setOpenBankslipModal}
+      />
       <nav className="z-30 absolute hidden flex-row justify-between bg-white w-full rounded-b-3xl shadow-md px-8 py-6 md:flex lg:w-3/4">
         {base64 && (
           <img src={base64} alt="Logo do sindicato" width={90} height={90} />
@@ -92,7 +98,7 @@ export default function NavBar() {
 
         <div
           onClick={() => {
-            window.open('http://localhost:5173/', '_blank');
+            setOpenBankslipModal(true);
           }}
           className="flex items-center w-40 justify-center border-2 border-black rounded-3xl cursor-pointer hover:shadow-lg transition duration-300 ease-in-out"
         >
