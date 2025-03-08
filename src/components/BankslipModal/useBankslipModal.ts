@@ -71,6 +71,7 @@ export default function useBankslipModal(setIsOpen: (isOpen: boolean) => void) {
         month: 'numeric',
         year: 'numeric',
       });
+      const centavos = Number(unformatCurrency(data.amount));
   
       const body = {
         due_date: data.dueDate,
@@ -82,7 +83,7 @@ export default function useBankslipModal(setIsOpen: (isOpen: boolean) => void) {
             } - CNPJ: ${
               data.cnpj
             } no dia ${new Date().toLocaleDateString()} às ${new Date().toLocaleTimeString()} referente a data ${monthYear} `,
-            price_cents: Number(unformatCurrency(data.amount)),
+            price_cents: unformatCurrency(data.amount),
             quantity: 1,
           },
         ],
@@ -92,6 +93,10 @@ export default function useBankslipModal(setIsOpen: (isOpen: boolean) => void) {
         },
       };
       try {
+        if (centavos < 100) {
+          toast.error('O valor mínimo para gerar um boleto é de R$ 1,00');
+          return;
+        }
         setLoading(true);
         const { data } = await axios.post(
           'https://comerciariosdeimperatriz.com.br/api/without/boleto/criar',
