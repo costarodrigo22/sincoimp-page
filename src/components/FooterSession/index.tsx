@@ -75,6 +75,8 @@ export default function FooterSession() {
     }
   }
 
+  const clientName = process.env.CLIENT_NAME;
+
   return (
     <>
       <Dialog
@@ -283,12 +285,21 @@ export default function FooterSession() {
               width={30}
               height={30}
             />
-            <Image
-              src="imperatriz.svg"
-              alt="Bandeira de Imperatriz"
-              width={30}
-              height={30}
-            />
+            {clientName === 'sincoimp' ? (
+              <Image
+                src="imperatriz.svg"
+                alt="Bandeira de Imperatriz"
+                width={30}
+                height={30}
+              />
+            ) : (
+              <Image
+                src="grajau.svg"
+                alt="Bandeira de Grajaú"
+                width={30}
+                height={30}
+              />
+            )}
           </div>
         </div>
 

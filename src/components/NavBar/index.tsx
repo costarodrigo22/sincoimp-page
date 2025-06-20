@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import BankslipModal from '../BankslipModal';
 import { httpClient } from '@/utils/httpClient';
+import { cn } from '@/utils/Cn';
 
 export default function NavBar() {
   const [openMenuResponsive, setOpenMenuResponsive] = useState(false);
@@ -36,6 +37,8 @@ export default function NavBar() {
       section.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  const clientName = process.env.CLIENT_NAME;
 
   return (
     <>
@@ -99,7 +102,12 @@ export default function NavBar() {
           onClick={() => {
             setOpenBankslipModal(true);
           }}
-          className="flex items-center w-40 justify-center border-2 border-black rounded-3xl cursor-pointer hover:shadow-lg transition duration-300 ease-in-out"
+          className={cn(
+            'flex items-center w-40 justify-center border-2 border-black rounded-3xl cursor-pointer hover:shadow-lg transition duration-300 ease-in-out',
+            clientName === 'sincogra'
+              ? 'pointer-events-none bg-slate-300 opacity-25'
+              : ''
+          )}
         >
           <span className="font-medium">Emita seu boleto</span>
         </div>
