@@ -1,24 +1,23 @@
-import Image from 'next/image';
 import React from 'react';
 import * as RadixIcons from '@radix-ui/react-icons';
 import { IconDisplay } from '../BenefitsSession/BenefitIcon';
 
 type RadixIconNames = keyof typeof RadixIcons;
 
-interface IActionCard {
+interface IActionCardProps {
   title: string;
   text: string;
-  icone: RadixIconNames | null;
+  icon: RadixIconNames | null;
 }
 
-export default function ActionCard({ title, text, icone }: IActionCard) {
+export default function ActionCard({ title, text, icon }: IActionCardProps) {
   return (
-    <div className="w-full h-[350px] lg:h-auto flex justify-center flex-col p-5 sm:p-7 md:p-8 lg:p-9 bg-[#F3F3F3] rounded-2xl">
-      <IconDisplay selectedIcon={icone} />
-      <strong className="mt-3 pt-6 text-base lg:text-base sm:text-lg">
-        {title}
-      </strong>
-      <span className="text-xs sm:text-sm mt-8">{text}</span>
+    <div className="flex h-[270px] md:h-[300px] lg:h-400px w-full flex-col rounded-2xl bg-[#F3F3F3] p-5 sm:p-7 md:p-5">
+      <IconDisplay selectedIcon={icon} />
+      <strong className="mt-3 pt-2 text-base sm:text-lg">{title}</strong>
+      <div className="mt-4 flex-1 min-h-0 overflow-y-auto">
+        <p className="text-sm sm:text-sm">{text}</p>
+      </div>
     </div>
   );
 }

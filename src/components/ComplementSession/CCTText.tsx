@@ -7,7 +7,7 @@ interface ICCTText {
 
 export default function CCTText({ text }: ICCTText) {
   return (
-    <div className="flex gap-2 items-center text-xs sm:text-sm">
+    <div className="flex gap-2 items-center">
       <Image src="arrow-icon.svg" width={20} height={20} alt="Arrow icon" />
       <span>{text}</span>
     </div>

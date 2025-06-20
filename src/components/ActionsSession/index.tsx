@@ -2,6 +2,7 @@ import Image from 'next/image';
 import ActionCard from './ActionCard';
 import axios from 'axios';
 import * as RadixIcons from '@radix-ui/react-icons';
+import { httpClient } from '@/utils/httpClient';
 
 type RadixIconNames = keyof typeof RadixIcons;
 
@@ -11,20 +12,14 @@ export default async function ActionsSession() {
   let benefits;
 
   try {
-    const response = await axios.get(
-      'https://comerciariosdeimperatriz.com.br/api/without/segundo_informativo/index',
-      {
-        headers: {
-          Accept: 'application/json',
-        },
-      }
+    const { data } = await httpClient.get(
+      '/api/without/segundo_informativo/index'
     );
 
-    titleNdescription = response.data.data;
-    benefits = response.data.data[0]?.categoria_segundo_informativo;
+    titleNdescription = data.data;
+    benefits = data.data[0]?.categoria_segundo_informativo;
   } catch (error) {
     console.error('Erro ao buscar os dados:', error);
-    // Lidar com o erro de maneira apropriada
   }
 
   return (
@@ -49,17 +44,17 @@ export default async function ActionsSession() {
       >
         <div className="flex flex-col w-full lg:w-4/5">
           {titleNdescription && (
-            <span className="px-8 py-4 text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium lg:px-0">
+            <span className="px-2 py-4 text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium lg:px-0">
               {titleNdescription[0].titulo}
             </span>
           )}
           {titleNdescription && (
-            <span className="px-8 lg:px-0 text-sm sm:text-md">
+            <span className="px-2 lg:px-0 text-sm sm:text-md">
               {titleNdescription[0].descricao}
             </span>
           )}
         </div>
-        <div className="grid grid-cols-1 w-full h-full gap-12 px-8 py-8 lg:w-4/5 lg:px-0 lg:flex lg:justify-center md:grid-cols-2">
+        <div className="grid grid-cols-1 w-full h-full gap-12 md:gap-4 py-8 lg:w-4/5  lg:flex lg:justify-center sm:grid-cols-2">
           {benefits &&
             benefits.map(
               (item: {
@@ -72,7 +67,7 @@ export default async function ActionsSession() {
                   key={item.id}
                   text={item.texto}
                   title={item.titulo}
-                  icone={item.icone}
+                  icon={item.icone}
                 />
               )
             )}

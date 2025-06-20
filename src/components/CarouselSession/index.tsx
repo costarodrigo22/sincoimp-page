@@ -6,6 +6,7 @@ import Carousel from '../Carousel';
 import NavBar from '../NavBar';
 import 'swiper/css';
 import { ClipLoader } from 'react-spinners';
+import { httpClient } from '@/utils/httpClient';
 
 const CarouselSession = () => {
   const [images, setImages] = useState<any>(null);
@@ -16,15 +17,8 @@ const CarouselSession = () => {
     const fetchImages = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(
-          'https://comerciariosdeimperatriz.com.br/api/without/carrossel/index',
-          {
-            headers: {
-              Accept: 'application/json',
-            },
-          }
-        );
-        setImages(response.data);
+        const { data } = await httpClient.get('/api/without/carrossel/index');
+        setImages(data);
       } catch (error) {
         setError('Não foi possível carregar as imagens.');
         console.error('Error fetching images:', error);

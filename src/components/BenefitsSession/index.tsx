@@ -7,6 +7,7 @@ import ButtonNavigation from '../ButtonNavigation';
 import BenefitItem from './BenefitItem';
 import * as RadixIcons from '@radix-ui/react-icons';
 import { ClipLoader } from 'react-spinners';
+import { httpClient } from '@/utils/httpClient';
 
 type RadixIconNames = keyof typeof RadixIcons;
 
@@ -19,17 +20,11 @@ const BenefitsSession = () => {
   useEffect(() => {
     const fetchBenefits = async () => {
       try {
-        const response = await axios.get(
-          'https://comerciariosdeimperatriz.com.br/api/without/primeiro_informativo/index',
-          {
-            headers: {
-              Accept: 'application/json',
-            },
-          }
+        const { data } = await httpClient.get(
+          '/api/without/primeiro_informativo/index'
         );
-        const data = response.data;
-        setTitleNdescription(data.data);
-        setBenefits(data.data[0]?.categoria_primeiro_informativo || []);
+        setTitleNdescription(data.data || []);
+        setBenefits(data.data?.[0]?.categoria_primeiro_informativo || []);
       } catch (err) {
         setError('Não foi possível carregar os benefícios.');
         console.error('Error fetching benefits:', err);
@@ -56,9 +51,9 @@ const BenefitsSession = () => {
     >
       <div className="w-full h-auto flex lg:w-4/5">
         <div className="hidden lg:w-1/2 lg:flex">
-          {titleNdescription && (
+          {titleNdescription?.[0]?.base64 && (
             <Image
-              src={titleNdescription[0]?.base64}
+              src={titleNdescription[0].base64}
               alt="default image"
               width={0}
               height={0}
@@ -75,13 +70,13 @@ const BenefitsSession = () => {
             alt="Icon fake"
             className="absolute right-0 -top-0.5"
           />
-          <div className=" flex flex-col">
-            {titleNdescription && (
+          <div className="flex flex-col">
+            {titleNdescription?.[0]?.titulo && (
               <span className="font-medium text-xl sm:text-2xl md:text-3xl lg:text-2xl xl:text-3xl px-8 sm:px-0">
                 {titleNdescription[0].titulo}
               </span>
             )}
-            {titleNdescription && (
+            {titleNdescription?.[0]?.descricao && (
               <span className="px-8 sm:px-0">
                 {titleNdescription[0].descricao}
               </span>

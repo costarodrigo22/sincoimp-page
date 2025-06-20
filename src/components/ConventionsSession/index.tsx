@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { Data } from './conventionTypes';
 import { ClipLoader } from 'react-spinners';
 import ConventionCarousel from './components/ConventionsCarousel';
+import { httpClient } from '@/utils/httpClient';
 
 export default function ConventionsSession() {
   const [data, setData] = useState<Data | null>(null);
@@ -14,15 +15,8 @@ export default function ConventionsSession() {
     const handleGetData = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get(
-          'https://comerciariosdeimperatriz.com.br/api/without/convencao/index',
-          {
-            headers: {
-              Accept: 'application/json',
-            },
-          }
-        );
-        setData(response.data);
+        const { data } = await httpClient.get('/api/without/convencao/index');
+        setData(data);
       } catch (error) {
         console.error('Erro ao buscar os dados:', error);
       } finally {

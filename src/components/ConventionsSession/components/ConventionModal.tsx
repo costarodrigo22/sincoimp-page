@@ -5,6 +5,7 @@ import Image from 'next/image';
 import axios from 'axios';
 import { useState } from 'react';
 import { ClipLoader } from 'react-spinners';
+import { httpClient } from '@/utils/httpClient';
 
 interface ConventionModalProps {
   isModalOpen: boolean;
@@ -28,14 +29,14 @@ export default function ConventionModal({
       id: FileId,
     };
     try {
-      const res = await axios.post(
-        'https://comerciariosdeimperatriz.com.br/api/without/anexo_convencao/view_file',
+      const { data } = await httpClient.post(
+        '/api/without/anexo_convencao/view_file',
         body,
         {
           responseType: 'blob',
         }
       );
-      const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
+      const pdfBlob = new Blob([data], { type: 'application/pdf' });
       const pdfUrl = URL.createObjectURL(pdfBlob);
       window.open(pdfUrl, '_blank');
     } catch (error) {

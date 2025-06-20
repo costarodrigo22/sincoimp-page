@@ -5,6 +5,7 @@ import axios from 'axios';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import BankslipModal from '../BankslipModal';
+import { httpClient } from '@/utils/httpClient';
 
 export default function NavBar() {
   const [openMenuResponsive, setOpenMenuResponsive] = useState(false);
@@ -14,10 +15,8 @@ export default function NavBar() {
 
   async function handleGetData() {
     try {
-      const res = await axios.get(
-        'https://comerciariosdeimperatriz.com.br/api/without/empresa/logo'
-      );
-      setBase64(res.data.data[0].base64);
+      const { data } = await httpClient.get('/api/without/empresa/logo');
+      setBase64(data.data[0].base64);
     } catch (error) {
       console.log(error);
     }

@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import axios from 'axios';
 import { BeatLoader } from 'react-spinners';
 import { useReportModal } from '@/app/contexts/ReportModal';
+import { httpClient } from '@/utils/httpClient';
 
 interface FooterData {
   id: string;
@@ -37,15 +38,8 @@ export default function FooterSession() {
 
   async function handleFooterData() {
     try {
-      const response = await axios.get(
-        'https://comerciariosdeimperatriz.com.br/api/without/rodape/index',
-        {
-          headers: {
-            Accept: 'application/json',
-          },
-        }
-      );
-      setFooterData(response.data.data[0]);
+      const { data } = await httpClient.get('api/without/rodape/index');
+      setFooterData(data.data[0]);
     } catch (error) {
       console.error('Error fetching footer data:', error);
     }
@@ -67,10 +61,7 @@ export default function FooterSession() {
       formData.append('nome_empresa', enterprise);
       formData.append('descricao', description);
 
-      await axios.post(
-        'https://comerciariosdeimperatriz.com.br/api/without/denuncia/full_store',
-        formData
-      );
+      await httpClient.post('/api/without/denuncia/full_store', formData);
 
       toast.success('Enviado com Sucesso!');
     } catch (error) {

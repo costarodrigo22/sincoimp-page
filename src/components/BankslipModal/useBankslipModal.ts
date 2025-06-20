@@ -1,5 +1,6 @@
 import { formatCNPJ, unformatCNPJ } from "@/utils/FormatCnpj";
 import { formatCurrency, unformatCurrency } from "@/utils/FormatCurency";
+import { httpClient } from "@/utils/httpClient";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useState } from "react";
@@ -98,8 +99,8 @@ export default function useBankslipModal(setIsOpen: (isOpen: boolean) => void) {
           return;
         }
         setLoading(true);
-        const { data } = await axios.post(
-          'https://comerciariosdeimperatriz.com.br/api/without/boleto/criar',
+        const { data } = await httpClient.post(
+          '/api/without/boleto/criar',
           body
         );
         reset();
@@ -125,8 +126,8 @@ export default function useBankslipModal(setIsOpen: (isOpen: boolean) => void) {
         setLastFetchedCnpj(formattedValue);
 
         try {
-          const { data } = await axios.post<CompanyRes>(
-            'https://comerciariosdeimperatriz.com.br/api/without/empresa_conveniada/find_empresa',
+          const { data } = await httpClient.post<CompanyRes>(
+            '/api/without/empresa_conveniada/find_empresa',
             { cnpj: unformatCNPJ(formattedValue) }
           );
           setValue('companyName', data.data.nome_fantasia);
