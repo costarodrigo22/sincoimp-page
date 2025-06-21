@@ -235,8 +235,8 @@ export default function FooterSession() {
                   className="mr-4"
                   src="instagram.svg"
                   alt="Logo do instagram"
-                  width={30}
-                  height={30}
+                  width={20}
+                  height={20}
                 />
               </a>
               <a
@@ -247,8 +247,8 @@ export default function FooterSession() {
                 <Image
                   src="facebook.svg"
                   alt="Logo do facebook"
-                  width={30}
-                  height={30}
+                  width={20}
+                  height={20}
                 />
               </a>
             </div>
@@ -309,8 +309,8 @@ export default function FooterSession() {
             <Image
               src="whatsApp.svg"
               alt="Logo do WhatsApp"
-              width={30}
-              height={30}
+              width={20}
+              height={20}
             />
 
             <span className="text-sm ml-4">{footerData?.celular}</span>
@@ -319,8 +319,8 @@ export default function FooterSession() {
             <Image
               src="location.svg"
               alt="Alfinete de localização"
-              width={30}
-              height={30}
+              width={20}
+              height={20}
             />
 
             <span className="text-sm ml-4">{footerData?.endereco}</span>
@@ -329,17 +329,17 @@ export default function FooterSession() {
             <Image
               src="mesage.svg"
               alt="Imagem de uma carta, para simbolizar o e-mail"
-              width={30}
-              height={30}
+              width={20}
+              height={20}
             />
             <span className="text-sm ml-4">{footerData?.email}</span>
           </div>
 
-          <div className="mt-4">
+          <div className="mt-6">
             <button
               onClick={() => setOpenReportModal(true)}
               className="
-							flex items-center w-[200px] py-2 px-4 justify-center border-2 bg-white rounded-3xl cursor-pointer hover:shadow-lg transition duration-300 ease-in-out text-[12px] text-black font-bold
+							flex items-center w-[200px] py-2 px-4 justify-center border-2 text-sm bg-white rounded-3xl cursor-pointer hover:shadow-lg transition duration-300 ease-in-out text-[12px] text-black font-bold
 						"
             >
               <Image

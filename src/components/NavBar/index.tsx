@@ -46,9 +46,9 @@ export default function NavBar() {
         isOpen={openBankslipModal}
         setIsOpen={setOpenBankslipModal}
       />
-      <nav className="z-30 absolute hidden flex-row justify-between bg-white w-full rounded-b-3xl shadow-md px-8 py-6 md:flex lg:w-3/4">
+      <nav className="z-30 absolute hidden flex-row justify-between items-center bg-white w-full rounded-b-3xl shadow-md px-12 py-6 md:flex lg:w-3/4">
         {base64 && (
-          <img src={base64} alt="Logo do sindicato" width={90} height={90} />
+          <Image src={base64} alt="Logo do sindicato" width={75} height={81} />
         )}
 
         <div className="w-2/4 flex justify-between items-center text-sm font-medium">
@@ -103,7 +103,7 @@ export default function NavBar() {
             setOpenBankslipModal(true);
           }}
           className={cn(
-            'flex items-center w-40 justify-center border-2 border-black rounded-3xl cursor-pointer hover:shadow-lg transition duration-300 ease-in-out',
+            'flex items-center w-40 h-[50px] justify-center border-2 border-black rounded-3xl cursor-pointer hover:shadow-lg transition duration-300 ease-in-out',
             clientName === 'sincogra'
               ? 'pointer-events-none bg-slate-300 opacity-25'
               : ''
