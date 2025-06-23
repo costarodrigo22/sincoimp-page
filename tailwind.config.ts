@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import 'dotenv/config';
 
 const config: Config = {
   content: [
@@ -20,15 +21,16 @@ const config: Config = {
         'h-xl': { 'raw': '(max-height: 1280px)' },
       },
       colors: {
-        'primary-1': `${process.env.COLOR_PRIMARY_1}`,
-        'primary-2': `${process.env.COLOR_PRIMARY_2}`,
-        'primary-3': `${process.env.COLOR_PRIMARY_3}`,
-        'secondary-1': `${process.env.COLOR_SECONDARY_1}`,
-        'secondary-2': `${process.env.COLOR_SECONDARY_2}`,
-        'secondary-3': `${process.env.COLOR_SECONDARY_3}`,
-        'secondary-4': `${process.env.COLOR_SECONDARY_4}`,
-        'secondary-5': `${process.env.COLOR_SECONDARY_5}`,
-        'secondary-6': `${process.env.COLOR_SECONDARY_6}`,
+        'primary-1': process.env.COLOR_PRIMARY_1 || '#cecece', // Default fallback color
+        'primary-2': process.env.COLOR_PRIMARY_2 || '#cecece', // Default fallback color
+        'primary-3': process.env.COLOR_PRIMARY_3 || '#cecece', // Default fallback color
+        'secondary-1': process.env.COLOR_SECONDARY_1 || '#cecece', // Default fallback color,
+        'secondary-2': process.env.COLOR_SECONDARY_2 || '#cecece', // Default fallback color,
+        'secondary-3': process.env.COLOR_SECONDARY_3 || '#cecece', // Default fallback color,
+        'secondary-4': process.env.COLOR_SECONDARY_4 || '#cecece', // Default fallback color,
+        'secondary-5': process.env.COLOR_SECONDARY_5 || '#cecece', // Default fallback color,
+        'secondary-6': process.env.COLOR_SECONDARY_6 || '#cecece', // Default fallback color,
+        'secondary-7': process.env.COLOR_SECONDARY_7 || '#cecece', // Default fallback color,
       },
       keyframes: {
         overlayShow: {

@@ -7,12 +7,10 @@ export const IconDisplay: React.FC<{ selectedIcon: RadixIconNames | null }> = ({
 }) => {
   const IconComponent = selectedIcon ? RadixIcons[selectedIcon] : null;
 
-  const iconColor = process.env.COLOR_PRIMARY_1;
-
   return (
     <div>
       {IconComponent && (
-        <IconComponent width={24} height={24} color={iconColor} />
+        <IconComponent width={24} height={24} className="text-primary-1" />
       )}
     </div>
   );

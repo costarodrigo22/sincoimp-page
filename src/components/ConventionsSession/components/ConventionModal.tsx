@@ -82,7 +82,7 @@ export default function ConventionModal({
                 {loadingFiles[anexo.id] ? (
                   <ClipLoader
                     loading={loadingFiles[anexo.id]}
-                    color="#B50000"
+                    className="text-primary-1"
                     size={25}
                   />
                 ) : (

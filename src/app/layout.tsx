@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, Poppins } from 'next/font/google';
 import './globals.css';
+import { useEnvStore } from './contexts/EnvContext';
 
 const inter = Poppins({
   weight: [
@@ -26,12 +27,19 @@ const inter = Poppins({
   subsets: ['latin'],
 });
 
-const theme = process.env.CLIENT_NAME || 'default';
+useEnvStore.setState({
+  pageTitle: process.env.PAGE_TITLE,
+  pageDescription: process.env.PAGE_DESCRIPTION,
+  clientName: process.env.CLIENT_NAME,
+});
+
+const theme = useEnvStore.getState().clientName;
+
 const iconPath = `/clients/${theme}/favicon.svg`;
 
 export const metadata: Metadata = {
-  title: process.env.PAGE_TITLE,
-  description: process.env.PAGE_DESCRIPTION,
+  title: useEnvStore.getState().pageTitle,
+  description: useEnvStore.getState().pageDescription,
   icons: {
     icon: iconPath,
   },

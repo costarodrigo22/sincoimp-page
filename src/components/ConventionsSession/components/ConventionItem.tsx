@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import { Convencao } from '../conventionTypes';
+import ArrowDiagonal from '@/components/Images/ArrowDiagonal';
 
 interface ConventionItemProps extends React.HTMLProps<HTMLDivElement> {
   item: Convencao;
@@ -26,11 +27,10 @@ export default function ConventionItem({ item, ...rest }: ConventionItemProps) {
           <p className=" group-hover/convencao:underline transition-all duration-300 ease-in-out text-[#343434]">
             {item.descricao}
           </p>
-          <Image
-            src={'/arrow-diagonal-red.svg'}
-            alt="Abrir convenção"
-            width={15}
-            height={15}
+          <ArrowDiagonal
+            className="text-primary-1"
+            aria-label="Ícone de seta diagonal"
+            size={18}
           />
         </div>
       </div>

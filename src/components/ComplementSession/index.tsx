@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import ComplementCard from './ComplementCard';
 import CCTText from './CCTText';
+import { cn } from '@/utils/Cn';
+import { useEnvStore } from '@/app/contexts/EnvContext';
 
 export default function ComplementSession() {
   const sincoimpAbsenceItems: string[] = [
@@ -21,9 +23,10 @@ export default function ComplementSession() {
     '2 dias para acompanhar esposa/companheira no periodo da gravidez;',
   ];
 
-  const clientName = process.env.CLIENT_NAME;
+  const clientName = useEnvStore.getState().clientName;
   const absenceItems =
     clientName === 'sincogra' ? sincograAbsenceItems : sincoimpAbsenceItems;
+  const imagePath = `/clients/${clientName}/human.svg`;
 
   return (
     <div className="flex flex-col w-full h-auto">
@@ -93,9 +96,14 @@ export default function ComplementSession() {
               <CCTText key={item} text={item} />
             ))}
           </div>
-          <div className="w-1/4 hidden lg:flex items-end -mb-24 -z-40">
+          <div
+            className={cn(
+              'w-1/4 hidden lg:flex items-end -mb-12 -z-40',
+              clientName === 'sincogra' ? ' lg:-mb-10 xl:-mb-16 ' : '-mb-24'
+            )}
+          >
             <Image
-              src="/human.png"
+              src={imagePath}
               width={350}
               height={350}
               alt="Human illustration"

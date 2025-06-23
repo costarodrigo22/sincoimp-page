@@ -9,14 +9,24 @@ import { Convencao, Data } from '../conventionTypes';
 import { useState } from 'react';
 import ConventionModal from './ConventionModal';
 import ButtonCarousel from '@/components/ButtonCarousel';
+import useIsHydrated from './UseIsHydratated';
 
 export default function ConventionCarousel({ data }: Data) {
   const [item, setItem] = useState<Convencao>({} as Convencao);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const isHydrated = useIsHydrated();
 
   function handleOpenModal(item: Convencao) {
     setItem(item);
     setIsModalOpen(true);
+  }
+
+  if (!isHydrated) {
+    return (
+      <div className="w-full h-[350px] flex items-center justify-center">
+        <div className="w-10 h-10 rounded-full border-4 border-primary-1 border-t-transparent animate-spin" />
+      </div>
+    );
   }
 
   return (

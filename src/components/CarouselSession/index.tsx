@@ -35,7 +35,7 @@ const CarouselSession = () => {
       <NavBar />
       {loading && (
         <div className="flex justify-center items-center absolute top-72">
-          <ClipLoader loading={loading} color="#B50000" size={30} />
+          <ClipLoader loading={loading} className="text-primary-1" size={30} />
         </div>
       )}
       {error && <p>{error}</p>}

@@ -1,56 +1,40 @@
-'use client';
-
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import Image from 'next/image';
-import ButtonNavigation from '../ButtonNavigation';
 import BenefitItem from './BenefitItem';
 import * as RadixIcons from '@radix-ui/react-icons';
-import { ClipLoader } from 'react-spinners';
 import { httpClient } from '@/utils/httpClient';
+import { useEnvStore } from '@/app/contexts/EnvContext';
 
 type RadixIconNames = keyof typeof RadixIcons;
 
-const BenefitsSession = () => {
-  const [titleNdescription, setTitleNdescription] = useState<any>(null);
-  const [benefits, setBenefits] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+export default async function BenefitsSession() {
+  const clientName = useEnvStore.getState().clientName;
 
-  useEffect(() => {
-    const fetchBenefits = async () => {
-      try {
-        const { data } = await httpClient.get(
-          '/api/without/primeiro_informativo/index'
-        );
-        setTitleNdescription(data.data || []);
-        setBenefits(data.data?.[0]?.categoria_primeiro_informativo || []);
-      } catch (err) {
-        setError('Não foi possível carregar os benefícios.');
-        console.error('Error fetching benefits:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const imagePath = `/clients/${clientName}/image-benefits.svg`;
 
-    fetchBenefits();
-  }, []);
+  let titleNdescription = null;
+  let benefits = [];
+  let error = null;
 
-  if (loading)
-    return (
-      <div className="flex justify-center items-center mt-40">
-        <ClipLoader loading={loading} color="#B50000" size={30} />
-      </div>
+  try {
+    const { data } = await httpClient.get(
+      '/api/without/primeiro_informativo/index'
     );
+    titleNdescription = data.data || [];
+    benefits = data.data?.[0]?.categoria_primeiro_informativo || [];
+  } catch (err) {
+    error = 'Não foi possível carregar os benefícios.';
+    console.error('Error fetching benefits:', err);
+  }
+
   if (error) return <p>{error}</p>;
 
   return (
     <div
       id="benefitsSection"
-      className="w-full h-auto flex justify-center lg:px-3"
+      className="w-full h-[710px] flex justify-center lg:px-3 pb-1"
     >
-      <div className="w-full h-auto flex lg:w-4/5">
-        <div className="hidden lg:w-1/2 lg:flex">
+      <div className="w-full h-[710px] flex gap-40">
+        <div className="hidden h-[710px] lg:w-1/2 lg:flex">
           {titleNdescription?.[0]?.base64 && (
             <Image
               src={titleNdescription[0].base64}
@@ -62,24 +46,22 @@ const BenefitsSession = () => {
           )}
         </div>
 
-        <div className="relative w-full flex flex-col items-center pt-14 lg:w-1/2">
+        <div className="relative w-full h-[710px] flex flex-col pt-14">
           <Image
-            src="image-benefits.svg"
-            width={77}
-            height={0}
+            src={imagePath}
+            width={89}
+            height={173}
             alt="Icon fake"
-            className="absolute right-0 -top-0.5"
+            className="absolute right-6 -top-0.5"
           />
-          <div className="flex flex-col">
+          <div className="flex flex-col pl-8 lg:pl-0">
             {titleNdescription?.[0]?.titulo && (
-              <span className="font-medium text-xl sm:text-2xl md:text-3xl lg:text-2xl xl:text-3xl px-8 sm:px-0">
+              <span className="font-medium text-xl sm:text-2xl md:text-3xl lg:text-2xl xl:text-3xl">
                 {titleNdescription[0].titulo}
               </span>
             )}
             {titleNdescription?.[0]?.descricao && (
-              <span className="px-8 sm:px-0">
-                {titleNdescription[0].descricao}
-              </span>
+              <span className="">{titleNdescription[0].descricao}</span>
             )}
           </div>
           <div className="px-8 w-full grid grid-cols-1 sm:grid-cols-2 gap-2 mt-24 lg:px-0">
@@ -97,13 +79,8 @@ const BenefitsSession = () => {
               )
             )}
           </div>
-          {/* <div className="flex pl-8 w-full lg:pl-0 items-center justify-center">
-            <ButtonNavigation label="Quero me Filiar" navigateTo="/" />
-          </div> */}
         </div>
       </div>
     </div>
   );
-};
-
-export default BenefitsSession;
+}

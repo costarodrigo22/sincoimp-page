@@ -99,10 +99,11 @@ export default function FooterSession() {
             </div>
 
             <strong className="text-[16px]">
-              Bem-vindo(a) ao nosso canal de denúncia
+              Bem-vindo(a) ao nosso canal de denúncia!
             </strong>
 
             <span className="text-[14px]">
+              {' '}
               Aqui você pode registrar denúncias contra empresas filiadas ao
               sindicato. Mas não se preocupe,
               <strong className="text-[14px] ml-1">
