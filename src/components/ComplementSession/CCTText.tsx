@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
+import ArrowIcon from '../Images/ArrowIcon';
 
 interface ICCTText {
   text: string;
@@ -7,8 +8,8 @@ interface ICCTText {
 
 export default function CCTText({ text }: ICCTText) {
   return (
-    <div className="flex gap-2 items-center text-xs sm:text-sm">
-      <Image src="arrow-icon.svg" width={20} height={20} alt="Arrow icon" />
+    <div className="flex gap-2 items-center">
+      <ArrowIcon className="text-primary-1" />
       <span>{text}</span>
     </div>
   );

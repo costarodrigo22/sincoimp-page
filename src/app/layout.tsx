@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, Poppins } from 'next/font/google';
 import './globals.css';
+import { useEnvStore } from './contexts/EnvContext';
 
 const inter = Poppins({
 	weight: [
@@ -26,9 +27,22 @@ const inter = Poppins({
 	subsets: ['latin'],
 });
 
+useEnvStore.setState({
+	pageTitle: process.env.PAGE_TITLE,
+	pageDescription: process.env.PAGE_DESCRIPTION,
+	clientName: process.env.NEXT_PUBLIC_CLIENT_NAME,
+});
+
+const theme = useEnvStore.getState().clientName;
+
+const iconPath = `/clients/${theme}/favicon.svg`;
+
 export const metadata: Metadata = {
-	title: 'Sincoimp',
-	description: 'Sindicato Imperatriz',
+	title: useEnvStore.getState().pageTitle,
+	description: useEnvStore.getState().pageDescription,
+	icons: {
+		icon: iconPath,
+	},
 };
 
 export default function RootLayout({
@@ -37,7 +51,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang='en'>
+		<html lang='pt-BR'>
 			<body className={inter.className}>{children}</body>
 		</html>
 	);

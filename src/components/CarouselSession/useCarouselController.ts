@@ -1,17 +1,13 @@
+import { httpClient } from '@/utils/httpClient';
+import axios from 'axios';
+
 
 export default async function useCarouselController() {
-
-  const response = await fetch(
-    'https://comerciariosdeimperatriz.com.br/api/without/carrossel/index',
-    {
-      cache: 'no-store',
-      headers: {
-        Accept: 'application/json',
-      },
-    }
+  const { data } = await httpClient.get(
+    '/api/without/carrossel/index',
   );
 
-  const images = await response.json();
+  const images = data;
 
-  return { images }
+  return { images };
 }
